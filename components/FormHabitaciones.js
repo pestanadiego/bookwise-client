@@ -21,8 +21,8 @@ export default function FromHabitaciones(){
                     <div class="px-4 py-5 bg-white sm:p-6">
                       <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 sm:col-span-3">
-                          <label for="tipo-hab" class="block text-sm font-medium text-gray-700">Tipo de Habitación</label>
-                          <input type="text" name="tipo-hab" id="tipo-hab" autocomplete="tipo-hab" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                          <label for="tipo_hab" class="block text-sm font-medium text-gray-700">Tipo de Habitación</label>
+                          <input type="text" name="tipo_hab" id="tipo_hab" autocomplete="tipo_hab" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
@@ -31,18 +31,18 @@ export default function FromHabitaciones(){
                         </div>
 
                         <div class="col-span-6 sm:col-span-4">
-                          <label for="num-camas" class="block text-sm font-medium text-gray-700">Número de Camas</label>
-                          <input type="text" name="num-camas" id="num-camas" autocomplete="num-camas" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-50 shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                          <label for="num_camas" class="block text-sm font-medium text-gray-700">Número de Camas</label>
+                          <input type="text" name="num_camas" id="num_camas" autocomplete="num_camas" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-50 shadow-sm sm:text-sm border-gray-300 rounded-md"/>
                         </div>
 
                         <div class="col-span-6">
-                          <label for="limite-personas" class="block text-sm font-medium text-gray-700">Límite de Personas</label>
-                          <input type="text" name="limite-personas" id="limite-personas" autocomplete="limite-personas" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-30 shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                          <label for="limite_personas" class="block text-sm font-medium text-gray-700">Límite de Personas</label>
+                          <input type="text" name="limite_personas" id="limite_personas" autocomplete="limite_personas" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-30 shadow-sm sm:text-sm border-gray-300 rounded-md"/>
                         </div>
 
                         <div class="col-span-6 sm:col-span-6 lg:col-span-2">
-                          <label for="cant-hab" class="block text-sm font-medium text-gray-700">Cantidad de Habitaciones</label>
-                          <input type="text" name="cant-hab" id="cant-hab" autocomplete="cant-hab" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-50 shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                          <label for="cant_hab" class="block text-sm font-medium text-gray-700">Cantidad de Habitaciones</label>
+                          <input type="text" name="cant_hab" id="cant_hab" autocomplete="cant_hab" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-50 shadow-sm sm:text-sm border-gray-300 rounded-md"/>
                         </div>
                       </div>
                     </div>
