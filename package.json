@@ -10,6 +10,8 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "@headlessui/react": "^1.4.3",
+    "@heroicons/react": "^1.0.5",
     "@mui/core": "^5.0.0-alpha.54",
     "@mui/icons-material": "^5.3.1",
     "@mui/material": "^5.3.1",

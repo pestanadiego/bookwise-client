@@ -19,11 +19,11 @@ export default function Navbar() {
       <div className="flex flex-row-reverse mr-4 ml-4 md:hidden">
         <Menu />
       </div>
-      <div className="flex flex-row-reverse mr-8 hidden md:flex">
+      <div className="flex flex-row-reverse mr-8 md:flex">
         <Link href="/hotel/create">
-        <button  className="w-full mx-1 py-2 px-3 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-          Crear
-        </button>
+          <button className="w-full mx-1 py-2 px-3 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Crear
+          </button>
         </Link>
       </div>
     </div>

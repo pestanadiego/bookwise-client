@@ -1,5 +1,4 @@
 // Este array es para pruebas unicamente
-
 const hotels = [
   {
     name_hotel: 'Hotel Tamanaco',
@@ -24,7 +23,7 @@ const hotels = [
   },
 ];
 
-export default function Table() {
+export default function HotelTable() {
   return (
     <div className="flex flex-col">
       <div className="px-4">
