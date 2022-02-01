@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function FormHabitaciones() {
+export default function RoomForm() {
   return (
     <div class="mt-10 sm:mt-0">
       <div class="md:grid md:grid-cols-3 md:gap-6">
