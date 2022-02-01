@@ -1,29 +1,23 @@
-// Este array es para pruebas unicamente
-const hotels = [
-  {
-    name_hotel: 'Hotel Tamanaco',
-    address: 'Caracas',
-    rating: '5',
-    manager: 'John Doe',
-    nro_hab: '223',
-  },
-  {
-    name_hotel: 'Hotel Tamanaco',
-    address: 'Caracas',
-    rating: '5',
-    manager: 'John Doe',
-    nro_hab: '223',
-  },
-  {
-    name_hotel: 'Hotel Tamanaco',
-    address: 'Caracas',
-    rating: '5',
-    manager: 'John Doe',
-    nro_hab: '223',
-  },
-];
+import api from '../config';
+import { useEffect, useState } from 'react';
 
 export default function HotelTable() {
+  const [hotels, setHotels] = useState([]);
+
+  async function getHotels() {
+    try {
+      const response = await api.get('/hotel/allHotels');
+      console.log(response.data.data);
+      setHotels(response.data.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    getHotels();
+  }, []);
+
   return (
     <div className="flex flex-col">
       <div className="px-4">
