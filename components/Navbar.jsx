@@ -26,6 +26,13 @@ export default function Navbar() {
           </button>
         </Link>
       </div>
+      <div className="flex flex-row-reverse mr-8 md:flex">
+        <Link href="/hotel/createHab">
+          <button className="w-full mx-1 py-2 px-1 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Crear Habitaciones
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }

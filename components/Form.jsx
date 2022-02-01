@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Form() {
   return (
     <div class="mt-10 sm:mt-0">
@@ -8,6 +10,12 @@ export default function Form() {
               Información del Hotel
             </h3>
           </div>
+          <br />
+          <Link href="/">
+            <button className="w-50 mx-1 py-2 px-3 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              Volver
+            </button>
+          </Link>
         </div>
         <div class="mt-5 md:mt-0 md:col-span-2">
           <form action="#" method="POST">
