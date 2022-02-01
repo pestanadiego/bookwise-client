@@ -1,12 +1,43 @@
 import Link from 'next/link';
+import { useState } from 'react';
+import { createHotel } from 'services/hotel';
 
 export default function HotelForm() {
+
+  const [nameHotel, setNameHotel] = useState("");
+  const [address, setAddress] = useState("");
+  const [manager, setManager] = useState("");
+  const [rating, setRating] = useState("");
+  const [roomsNumber, setRoomsNumber] = useState("");
+
+  const onSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const  data = {
+        name_hotel:nameHotel,
+        address,
+        manager,
+        rating,
+        nro_hab:roomsNumber
+      }
+      const request = await createHotel(data);
+      if (request){
+        console.log("Se creo el hotel")
+      } else {
+      return console.log("No se creo")
+      }
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
-    <div class="mt-10 sm:mt-0">
-      <div class="md:grid md:grid-cols-3 md:gap-6">
-        <div class="md:col-span-1">
-          <div class="px-4 sm:px-0">
-            <h3 class="px-7 text-lg font-medium leading-6 text-gray-900">
+    <div className="mt-10 sm:mt-0">
+      <div className="md:grid md:grid-cols-3 md:gap-6">
+        <div className="md:col-span-1">
+          <div className="px-4 sm:px-0">
+            <h3 className="px-7 text-lg font-medium leading-6 text-gray-900">
               Información del Hotel
             </h3>
           </div>
@@ -17,15 +48,15 @@ export default function HotelForm() {
             </button>
           </Link>
         </div>
-        <div class="mt-5 md:mt-0 md:col-span-2">
-          <form action="#" method="POST">
-            <div class="shadow overflow-hidden sm:rounded-md">
-              <div class="px-4 py-5 bg-white sm:p-6">
-                <div class="grid grid-cols-6 gap-6">
-                  <div class="col-span-6 sm:col-span-3">
+        <div className="mt-5 md:mt-0 md:col-span-2">
+          <form onSubmit={onSubmit} method="POST">
+            <div className="shadow overflow-hidden sm:rounded-md">
+              <div className="px-4 py-5 bg-white sm:p-6">
+                <div className="grid grid-cols-6 gap-6">
+                  <div className="col-span-6 sm:col-span-3">
                     <label
                       for="name_hotel"
-                      class="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-gray-700"
                     >
                       Nombre Hotel
                     </label>
@@ -33,15 +64,19 @@ export default function HotelForm() {
                       type="text"
                       name="name_hotel"
                       id="name_hotel"
+                      onChange={(e) => {
+                        e.preventDefault()
+                        setNameHotel(e.target.value)
+                      }}
                       autocomplete="nombre-hotel"
-                      class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-10"
                     />
                   </div>
 
-                  <div class="col-span-6 sm:col-span-3">
+                  <div className="col-span-6 sm:col-span-3">
                     <label
                       for="manager"
-                      class="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-gray-700"
                     >
                       Nombre Manager
                     </label>
@@ -49,15 +84,18 @@ export default function HotelForm() {
                       type="text"
                       name="manager"
                       id="manager"
-                      autocomplete="manager"
-                      class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      onChange={(e) => {
+                        e.preventDefault()
+                        setManager(e.target.value)
+                      }}
+                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-10"
                     />
                   </div>
 
-                  <div class="col-span-6 sm:col-span-4">
+                  <div className="col-span-6 sm:col-span-3">
                     <label
                       for="address"
-                      class="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-gray-700"
                     >
                       dirección
                     </label>
@@ -65,48 +103,57 @@ export default function HotelForm() {
                       type="text"
                       name="address"
                       id="address"
-                      autocomplete="address"
-                      class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-50 shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      onChange={(e) => {
+                        e.preventDefault()
+                        setAddress(e.target.value)
+                      }}
+                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-10"
                     />
                   </div>
 
-                  <div class="col-span-6">
+                  <div className="col-span-6 sm:col-span-3">
                     <label
                       for="rating"
-                      class="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-gray-700"
                     >
                       Rating
                     </label>
                     <input
-                      type="text"
+                      type="number"
                       name="rating"
                       id="rating"
-                      autocomplete="rating"
-                      class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-50 shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      onChange={(e) => {
+                        e.preventDefault()
+                        setRating(e.target.value)
+                      }}
+                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-10"
                     />
                   </div>
 
-                  <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                  <div className="col-span-6 sm:col-span-3">
                     <label
                       for="nro_hab"
-                      class="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-gray-700"
                     >
                       Número de Habitaciones
                     </label>
                     <input
-                      type="text"
+                      type="number"
                       name="nro_hab"
                       id="nro_hab"
-                      autocomplete="nro_hab"
-                      class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-50 shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      onChange={(e) => {
+                        e.preventDefault()
+                        setRoomsNumber(e.target.value)
+                      }}
+                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-10"
                     />
                   </div>
                 </div>
               </div>
-              <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+              <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                 <button
                   type="submit"
-                  class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   Guardar
                 </button>

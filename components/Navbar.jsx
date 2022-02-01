@@ -20,9 +20,23 @@ export default function Navbar() {
         <Menu />
       </div>
       <div className="flex flex-row-reverse mr-8 md:flex">
+        <Link href="/hotel">
+          <button className="w-full mx-1 py-2 px-3 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Ver Hoteles
+          </button>
+        </Link>
+      </div>
+      <div className="flex flex-row-reverse mr-8 md:flex">
+        <Link href="/room">
+          <button className="w-full mx-1 py-2 px-3 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+           Ver Habitaciones
+          </button>
+        </Link>
+      </div>
+      <div className="flex flex-row-reverse mr-8 md:flex">
         <Link href="/hotel/create">
           <button className="w-full mx-1 py-2 px-3 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            Crear
+            Crear Hotel
           </button>
         </Link>
       </div>
