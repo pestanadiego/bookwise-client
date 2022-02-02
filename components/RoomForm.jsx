@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 export default function RoomhtmlForm() {
   const [optionsHotel, setOptionsHotel] = useState([]);
   const [typeRoom, setTypeRoom] = useState('');
+  const [nameRoom, setNameRoom] = useState('');
   const [size, setSize] = useState('');
   const [hotelOwner, setHotelOwner] = useState('');
   const [limitPersons, setLimitPersons] = useState('');
@@ -16,7 +17,7 @@ export default function RoomhtmlForm() {
       value: 1,
     },
     {
-      name: 'Premiun',
+      name: 'Premium',
       value: 2,
     },
     {
@@ -29,12 +30,13 @@ export default function RoomhtmlForm() {
     try {
       e.preventDefault();
       const data = {
-        typeRoom,
-        size,
-        hotelOwner,
-        limitPersons,
-        bedNumber,
-        roomsNumber,
+        name: nameRoom,
+        type: typeRoom, //falta arreglarlo
+        size: size,
+        id_hotel: hotelOwner, // quiero el id no el nombre falta.
+        limit: limitPersons,
+        num_bed: bedNumber,
+        quantity: roomsNumber,
       };
       // const request = await createRoom(data);
       // if (request) {
@@ -92,7 +94,9 @@ export default function RoomhtmlForm() {
                   >
                     <option value="0">Selecciona tipo de Habitacion</option>
                     {optionsTypes.map((option) => (
-                      <option value={option?.value}> {option?.name} </option>
+                      <option value={option?.value} onChange={option?.name}>
+                        {option?.name}{' '}
+                      </option>
                     ))}
                   </select>
                 </div>
