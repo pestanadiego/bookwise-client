@@ -1,4 +1,5 @@
 import api from '../config';
+import { deleteLogicallyHotel } from 'services/hotel';
 import { useEffect, useState } from 'react';
 
 export default function HotelTable() {
@@ -14,9 +15,16 @@ export default function HotelTable() {
     }
   }
 
+  const handleDelete = async (id) => {
+    if (window.confirm('¿Estás seguro que deseas eliminar el hotel?')) {
+      deleteLogicallyHotel(id);
+      getHotels();
+    }
+  };
+
   useEffect(() => {
     getHotels();
-  }, []);
+  }, [hotels]);
 
   return (
     <div className="flex items-center flex-col">
@@ -88,7 +96,10 @@ export default function HotelTable() {
                       </a>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                      <a href="#" className="text-red-600 hover:text-red-900">
+                      <a
+                        onClick={() => handleDelete(hotel.id)}
+                        className="text-red-600 hover:text-red-900 cursor-pointer"
+                      >
                         Delete
                       </a>
                     </td>
