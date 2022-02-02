@@ -8,7 +8,7 @@ export default function HotelEditForm() {
   const router = useRouter();
   const roomId = router.query.roomId;
   const [attributes, setAtrributes] = useState([]);
-  const [typeRoom, setTypeRoom] = useState('');
+
   const [nameRoom, setNameRoom] = useState('');
   const [size, setSize] = useState('');
   const [hotelOwner, setHotelOwner] = useState('');
@@ -16,20 +16,6 @@ export default function HotelEditForm() {
   const [bedNumber, setBedNumber] = useState('');
   const [roomsNumber, setRoomsNumber] = useState('');
   const [done, setDone] = useState(false);
-  const optionsTypes = [
-    {
-      name: 'Regular',
-      value: 1,
-    },
-    {
-      name: 'Premium',
-      value: 2,
-    },
-    {
-      name: 'VIP',
-      value: 3,
-    },
-  ];
 
   async function getRoomAttributes() {
     try {
@@ -45,12 +31,10 @@ export default function HotelEditForm() {
     getRoomAttributes();
     if (attributes.length != 0) {
       setNameRoom(attributes[0].name);
-      setTypeRoom(attributes[0].type);
       setSize(attributes[0].size);
       setBedNumber(attributes[0].num_bed);
       setLimitPersons(attributes[0].limit);
       setRoomsNumber(attributes[0].quantity);
-      console.log(typeRoom);
     }
   }, [done]);
 
@@ -60,7 +44,6 @@ export default function HotelEditForm() {
 
       const data = {
         name: nameRoom, //falta arreglarlo
-        type: typeRoom,
         size: size,
         num_bed: bedNumber, // quiero el id no el nombre falta.
         limit: limitPersons,
@@ -91,35 +74,20 @@ export default function HotelEditForm() {
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6 sm:col-span-3">
                   <label
-                    htmlFor="typeRoom"
+                    htmlFor="nameRoom"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Tipo de habitación
                   </label>
-                  <select
-                    id="typeRoom"
-                    name="typeRoom"
-                    defaultValue={
-                      attributes.length == 0 ? '' : attributes[0].type
-                    }
+                  <input
+                    id="nameRoom"
+                    name="nameRoom"
                     onChange={(e) => {
                       e.preventDefault();
                       setNameRoom(e.target.value);
                     }}
                     className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  >
-                    <option value="0">Selecciona tipo de Habitacion</option>
-                    {optionsTypes.map((option) => (
-                      <option
-                        defaultValue={
-                          attributes.length == 0 ? '' : attributes[0].type
-                        }
-                        onChange={option?.name}
-                      >
-                        {option?.name}{' '}
-                      </option>
-                    ))}
-                  </select>
+                  />
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">

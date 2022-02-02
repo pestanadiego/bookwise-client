@@ -4,34 +4,18 @@ import { useEffect, useState } from 'react';
 
 export default function RoomhtmlForm() {
   const [optionsHotel, setOptionsHotel] = useState([]);
-  const [typeRoom, setTypeRoom] = useState('');
   const [nameRoom, setNameRoom] = useState('');
   const [size, setSize] = useState('');
   const [hotelOwner, setHotelOwner] = useState('');
   const [limitPersons, setLimitPersons] = useState('');
   const [bedNumber, setBedNumber] = useState('');
   const [roomsNumber, setRoomsNumber] = useState('');
-  const optionsTypes = [
-    {
-      name: 'Regular',
-      value: 1,
-    },
-    {
-      name: 'Premium',
-      value: 2,
-    },
-    {
-      name: 'VIP',
-      value: 3,
-    },
-  ];
 
   const onSubmit = async (e) => {
     try {
       e.preventDefault();
       const data = {
-        name: nameRoom,
-        type: typeRoom, //falta arreglarlo
+        name: nameRoom, //falta arreglarlo
         size: size,
         id_hotel: hotelOwner, // quiero el id no el nombre falta.
         limit: limitPersons,
@@ -82,23 +66,15 @@ export default function RoomhtmlForm() {
                   >
                     Tipo de habitación
                   </label>
-                  <select
+                  <input
                     id="typeRoom"
                     name="typeRoom"
-                    defaultValue="1"
                     onChange={(e) => {
                       e.preventDefault();
-                      setTypeRoom(e.target.value);
+                      setNameRoom(e.target.value);
                     }}
                     className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  >
-                    <option value="0">Selecciona tipo de Habitacion</option>
-                    {optionsTypes.map((option) => (
-                      <option value={option?.value} onChange={option?.name}>
-                        {option?.name}{' '}
-                      </option>
-                    ))}
-                  </select>
+                  />
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
