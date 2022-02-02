@@ -84,6 +84,7 @@ export default function RoomhtmlForm() {
                     id="typeRoom"
                     name="typeRoom"
                     defaultValue="1"
+                    required
                     onChange={(e) => {
                       e.preventDefault();
                       setTypeRoom(e.target.value);
@@ -108,6 +109,7 @@ export default function RoomhtmlForm() {
                     type="text"
                     name="tamano"
                     id="tamano"
+                    required
                     onChange={(e) => {
                       e.preventDefault();
                       setSize(e.target.value);
@@ -149,6 +151,7 @@ export default function RoomhtmlForm() {
                     type="text"
                     name="num_camas"
                     id="num_camas"
+                    required
                     onChange={(e) => {
                       e.preventDefault();
                       setBedNumber(e.target.value);
@@ -168,6 +171,7 @@ export default function RoomhtmlForm() {
                     type="text"
                     name="limite_personas"
                     id="limite_personas"
+                    required
                     onChange={(e) => {
                       e.preventDefault();
                       setLimitPersons(e.target.value);
@@ -187,6 +191,7 @@ export default function RoomhtmlForm() {
                     type="text"
                     name="cant_hab"
                     id="cant_hab"
+                    required
                     onChange={(e) => {
                       e.preventDefault();
                       setRoomsNumber(e.target.value);
