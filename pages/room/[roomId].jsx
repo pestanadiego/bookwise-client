@@ -45,7 +45,7 @@ export default function HotelEditForm() {
       const data = {
         name: nameRoom, //falta arreglarlo
         size: size,
-        num_bed: bedNumber, // quiero el id no el nombre falta.
+        num_bed: bedNumber,
         limit: limitPersons,
         quantity: roomsNumber,
       };
@@ -80,6 +80,9 @@ export default function HotelEditForm() {
                     Tipo de habitación
                   </label>
                   <input
+                    defaultValue={
+                      attributes.length == 0 ? '' : attributes[0].name
+                    }
                     id="nameRoom"
                     name="nameRoom"
                     onChange={(e) => {

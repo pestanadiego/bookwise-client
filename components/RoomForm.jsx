@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import api from '../config';
 import { useEffect, useState } from 'react';
+import { createRoom } from 'services/rooms';
 
 export default function RoomhtmlForm() {
   const [optionsHotel, setOptionsHotel] = useState([]);
@@ -22,12 +23,12 @@ export default function RoomhtmlForm() {
         num_bed: bedNumber,
         quantity: roomsNumber,
       };
-      // const request = await createRoom(data);
-      // if (request) {
-      //   console.log('Se creo la habitacion');
-      // } else {
-      //   return console.log('No se creo la habitacion');
-      // }
+      const request = await createRoom(data);
+      if (request) {
+        console.log('Se creo la habitacion');
+      } else {
+        return console.log('No se creo la habitacion');
+      }
       console.log(data);
     } catch (error) {
       console.error(error);
@@ -61,20 +62,20 @@ export default function RoomhtmlForm() {
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6 sm:col-span-3">
                   <label
-                    htmlFor="typeRoom"
+                    htmlFor="nameRoom"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Tipo de habitación
                   </label>
                   <input
-                    id="typeRoom"
-                    name="typeRoom"
+                    id="nameRoom"
+                    name="nameRoom"
                     onChange={(e) => {
                       e.preventDefault();
                       setNameRoom(e.target.value);
                     }}
                     className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  />
+                  ></input>
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
@@ -114,7 +115,7 @@ export default function RoomhtmlForm() {
                   >
                     <option value="0">Selecciona Hotel</option>
                     {optionsHotel.map((hotel) => (
-                      <option>{hotel.name_hotel}</option>
+                      <option value={hotel.id}>{hotel.name_hotel}</option>
                     ))}
                   </select>
                 </div>
