@@ -19,9 +19,10 @@ export default function HotelForm() {
       };
       const request = await createHotel(data);
       if (request) {
-        console.log('Se creo el hotel');
+        console.log('Se creó el hotel');
+        window.alert('El hotel fue añadido con éxito');
       } else {
-        return console.log('No se creo');
+        return console.log('No se creó');
       }
     } catch (error) {
       console.error(error);

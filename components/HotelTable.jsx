@@ -1,4 +1,5 @@
 import api from '../config';
+import Link from 'next/link';
 import { deleteLogicallyHotel } from 'services/hotel';
 import { useEffect, useState } from 'react';
 
@@ -8,7 +9,6 @@ export default function HotelTable() {
   async function getHotels() {
     try {
       const response = await api.get('/hotel/allHotels');
-      console.log(response.data.data);
       setHotels(response.data.data);
     } catch (error) {
       console.error(error);
@@ -88,19 +88,18 @@ export default function HotelTable() {
                       {hotel.manager}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <a
-                        href="#"
-                        className="text-indigo-600 hover:text-indigo-900"
-                      >
-                        Edit
-                      </a>
+                      <Link href={`/hotel/${hotel.id}`}>
+                        <a className="text-indigo-600 hover:text-indigo-900 cursor-pointer">
+                          Editar
+                        </a>
+                      </Link>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                       <a
                         onClick={() => handleDelete(hotel.id)}
                         className="text-red-600 hover:text-red-900 cursor-pointer"
                       >
-                        Delete
+                        Eliminar
                       </a>
                     </td>
                   </tr>
