@@ -18,7 +18,7 @@ export default function RoomhtmlForm() {
       const data = {
         name: nameRoom, //falta arreglarlo
         size: size,
-        id_hotel: hotelOwner, // quiero el id no el nombre falta.
+        id_hotel: parseInt(hotelOwner),
         limit: limitPersons,
         num_bed: bedNumber,
         quantity: roomsNumber,
@@ -178,7 +178,7 @@ export default function RoomhtmlForm() {
               </div>
             </div>
             <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-              <Link href="/">
+              <Link href="/room">
                 <button className="mx-2 py-2 px-3 border border-indigo-600 text-sm font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-700 focus:outline-none">
                   Volver
                 </button>
