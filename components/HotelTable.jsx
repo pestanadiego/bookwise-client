@@ -1,5 +1,6 @@
 import api from '../config';
 import { useEffect, useState } from 'react';
+import { deleteHotel } from '../services/hotel';
 
 export default function HotelTable() {
   const [hotels, setHotels] = useState([]);
@@ -13,6 +14,15 @@ export default function HotelTable() {
       console.error(error);
     }
   }
+
+  const handleOnClick = async (id) => {
+    try {
+      const request = await deleteHotel(id);
+      alert('Hotel Eliminado Exitósamente');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     getHotels();
@@ -88,9 +98,12 @@ export default function HotelTable() {
                       </a>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                      <a href="#" className="text-red-600 hover:text-red-900">
+                      <button
+                        className="text-red-600 hover:text-red-900"
+                        onClick={(e) => handleOnClick(hotel.id)}
+                      >
                         Delete
-                      </a>
+                      </button>
                     </td>
                   </tr>
                 ))}

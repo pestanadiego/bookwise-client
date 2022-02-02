@@ -1,7 +1,9 @@
 // Este array es para pruebas unicamente
+import { deleteRoom } from '../services/rooms';
 
 const habitaciones = [
   {
+    id: '1',
     HotelId: 'Humbolt',
     tipo_hab: 'Regular',
     tamano: '120cm',
@@ -10,6 +12,7 @@ const habitaciones = [
     cant_hab: '50',
   },
   {
+    id: '2',
     HotelId: 'Marriot',
     tipo_hab: 'Regular',
     tamano: '120cm',
@@ -18,6 +21,7 @@ const habitaciones = [
     cant_hab: '50',
   },
   {
+    id: '3',
     HotelId: 'Tamanaco',
     tipo_hab: 'Regular',
     tamano: '120cm',
@@ -26,6 +30,15 @@ const habitaciones = [
     cant_hab: '50',
   },
 ];
+
+const handleOnClick = async (id) => {
+  try {
+    const request = await deleteRoom(id);
+    alert('Habitación Eliminada Exitósamente');
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export default function RoomTable() {
   return (
@@ -110,12 +123,12 @@ export default function RoomTable() {
                       {habitacion.cant_hab}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <a
-                        href="#"
-                        className="text-indigo-600 hover:text-indigo-900"
+                      <button
+                        className="text-red-600 hover:text-red-900"
+                        onClick={(e) => handleOnClick(habitacion.id)}
                       >
-                        Edit
-                      </a>
+                        Delete
+                      </button>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                       <a href="#" className="text-red-600 hover:text-red-900">
