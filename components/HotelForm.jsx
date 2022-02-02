@@ -7,7 +7,6 @@ export default function HotelForm() {
   const [address, setAddress] = useState('');
   const [manager, setManager] = useState('');
   const [rating, setRating] = useState('');
-  const [roomsNumber, setRoomsNumber] = useState('');
 
   const onSubmit = async (e) => {
     try {
@@ -17,7 +16,6 @@ export default function HotelForm() {
         address,
         manager,
         rating,
-        nro_hab: roomsNumber,
       };
       const request = await createHotel(data);
       if (request) {

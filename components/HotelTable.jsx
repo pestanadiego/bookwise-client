@@ -19,7 +19,7 @@ export default function HotelTable() {
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex items-center flex-col">
       <div className="px-4">
         <div className="py-8 align-middle inline-block w-full">
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -50,12 +50,6 @@ export default function HotelTable() {
                   >
                     Manager
                   </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Habitaciones
-                  </th>
                   <th scope="col" className="relative px-6 py-3">
                     <span className="sr-only"></span>
                   </th>
@@ -66,7 +60,7 @@ export default function HotelTable() {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {hotels.map((hotel) => (
-                  <tr key={hotel.manager}>
+                  <tr key={hotel.id}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-center font-medium text-gray-900">
                         {hotel.name_hotel}
@@ -84,9 +78,6 @@ export default function HotelTable() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-500">
                       {hotel.manager}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-500">
-                      {hotel.nro_hab}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <a
