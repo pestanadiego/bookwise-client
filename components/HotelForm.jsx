@@ -56,6 +56,7 @@ export default function HotelForm() {
                       e.preventDefault();
                       setNameHotel(e.target.value);
                     }}
+                    required
                     autocomplete="nombre-hotel"
                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-10"
                   />
@@ -72,6 +73,7 @@ export default function HotelForm() {
                     type="text"
                     name="manager"
                     id="manager"
+                    required
                     onChange={(e) => {
                       e.preventDefault();
                       setManager(e.target.value);
@@ -91,6 +93,7 @@ export default function HotelForm() {
                     type="text"
                     name="address"
                     id="address"
+                    required
                     onChange={(e) => {
                       e.preventDefault();
                       setAddress(e.target.value);
@@ -110,6 +113,9 @@ export default function HotelForm() {
                     type="number"
                     name="rating"
                     id="rating"
+                    required
+                    min="0"
+                    max="5"
                     onChange={(e) => {
                       e.preventDefault();
                       setRating(e.target.value);

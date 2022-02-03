@@ -1,47 +1,35 @@
 import Link from 'next/link';
 import api from '../config';
 import { useEffect, useState } from 'react';
+import { createRoom } from 'services/rooms';
 
 export default function RoomhtmlForm() {
   const [optionsHotel, setOptionsHotel] = useState([]);
-  const [typeRoom, setTypeRoom] = useState('');
+  const [nameRoom, setNameRoom] = useState('');
   const [size, setSize] = useState('');
   const [hotelOwner, setHotelOwner] = useState('');
   const [limitPersons, setLimitPersons] = useState('');
   const [bedNumber, setBedNumber] = useState('');
   const [roomsNumber, setRoomsNumber] = useState('');
-  const optionsTypes = [
-    {
-      name: 'Regular',
-      value: 1,
-    },
-    {
-      name: 'Premiun',
-      value: 2,
-    },
-    {
-      name: 'VIP',
-      value: 3,
-    },
-  ];
 
   const onSubmit = async (e) => {
     try {
       e.preventDefault();
       const data = {
-        typeRoom,
-        size,
-        hotelOwner,
-        limitPersons,
-        bedNumber,
-        roomsNumber,
+        name: nameRoom,
+        size: size,
+        id_hotel: parseInt(hotelOwner),
+        limit: limitPersons,
+        num_bed: bedNumber,
+        quantity: roomsNumber,
       };
-      // const request = await createRoom(data);
-      // if (request) {
-      //   console.log('Se creo la habitacion');
-      // } else {
-      //   return console.log('No se creo la habitacion');
-      // }
+      const request = await createRoom(data);
+      if (request) {
+        console.log('Se creó la habitacion');
+        window.alert('La habitación fue añadida con éxito');
+      } else {
+        return console.log('No se creó la habitación');
+      }
       console.log(data);
     } catch (error) {
       console.error(error);
@@ -75,26 +63,21 @@ export default function RoomhtmlForm() {
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6 sm:col-span-3">
                   <label
-                    htmlFor="typeRoom"
+                    htmlFor="nameRoom"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Tipo de habitación
                   </label>
-                  <select
-                    id="typeRoom"
-                    name="typeRoom"
-                    defaultValue="1"
+                  <input
+                    id="nameRoom"
+                    name="nameRoom"
+                    required
                     onChange={(e) => {
                       e.preventDefault();
-                      setTypeRoom(e.target.value);
+                      setNameRoom(e.target.value);
                     }}
                     className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  >
-                    <option value="0">Selecciona tipo de Habitacion</option>
-                    {optionsTypes.map((option) => (
-                      <option value={option?.value}> {option?.name} </option>
-                    ))}
-                  </select>
+                  ></input>
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
@@ -105,9 +88,12 @@ export default function RoomhtmlForm() {
                     Tamaño
                   </label>
                   <input
-                    type="text"
+                    type="number"
                     name="tamano"
                     id="tamano"
+                    min="1"
+                    placeholder="En metros cuadrados"
+                    required
                     onChange={(e) => {
                       e.preventDefault();
                       setSize(e.target.value);
@@ -126,6 +112,7 @@ export default function RoomhtmlForm() {
                     id="country"
                     name="country"
                     defaultValue={optionsHotel?.[0] ?? 'Hotel Default'}
+                    required
                     onChange={(e) => {
                       e.preventDefault();
                       setHotelOwner(e.target.value);
@@ -134,7 +121,7 @@ export default function RoomhtmlForm() {
                   >
                     <option value="0">Selecciona Hotel</option>
                     {optionsHotel.map((hotel) => (
-                      <option>{hotel.name_hotel}</option>
+                      <option value={hotel.id}>{hotel.name_hotel}</option>
                     ))}
                   </select>
                 </div>
@@ -146,9 +133,11 @@ export default function RoomhtmlForm() {
                     Número de camas
                   </label>
                   <input
-                    type="text"
+                    type="number"
                     name="num_camas"
                     id="num_camas"
+                    min="1"
+                    required
                     onChange={(e) => {
                       e.preventDefault();
                       setBedNumber(e.target.value);
@@ -165,9 +154,11 @@ export default function RoomhtmlForm() {
                     Límite de personas
                   </label>
                   <input
-                    type="text"
+                    type="number"
                     name="limite_personas"
                     id="limite_personas"
+                    min="1"
+                    required
                     onChange={(e) => {
                       e.preventDefault();
                       setLimitPersons(e.target.value);
@@ -184,9 +175,11 @@ export default function RoomhtmlForm() {
                     Cantidad de habitaciones
                   </label>
                   <input
-                    type="text"
+                    type="number"
                     name="cant_hab"
                     id="cant_hab"
+                    min="1"
+                    required
                     onChange={(e) => {
                       e.preventDefault();
                       setRoomsNumber(e.target.value);

@@ -1,33 +1,30 @@
-// Este array es para pruebas unicamente
-
-const habitaciones = [
-  {
-    HotelId: 'Humbolt',
-    tipo_hab: 'Regular',
-    tamano: '120cm',
-    num_camas: '2',
-    limite_personas: '4',
-    cant_hab: '50',
-  },
-  {
-    HotelId: 'Marriot',
-    tipo_hab: 'Regular',
-    tamano: '120cm',
-    num_camas: '2',
-    limite_personas: '4',
-    cant_hab: '50',
-  },
-  {
-    HotelId: 'Tamanaco',
-    tipo_hab: 'Regular',
-    tamano: '120cm',
-    num_camas: '2',
-    limite_personas: '4',
-    cant_hab: '50',
-  },
-];
+import api from '../config';
+import Link from 'next/link';
+import { deleteLogicallyRoom } from 'services/rooms';
+import { useEffect, useState } from 'react';
 
 export default function RoomTable() {
+  const [rooms, setRooms] = useState([]);
+
+  async function getRooms() {
+    try {
+      const response = await api.get('/room/allRooms');
+      setRooms(response.data.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const handleDelete = async (id) => {
+    if (window.confirm('¿Estás seguro de que deseas eliminar la habitacion?')) {
+      deleteLogicallyRoom(id);
+      getRooms();
+    }
+  };
+
+  useEffect(() => {
+    getRooms();
+  }, [rooms]);
   return (
     <div className="flex flex-col">
       <div className="px-4">
@@ -81,45 +78,47 @@ export default function RoomTable() {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {habitaciones.map((habitacion) => (
-                  <tr key={habitaciones.manager}>
+                {rooms.map((room) => (
+                  <tr key={room.id}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-center font-medium text-gray-900">
-                        {habitacion.HotelId}
+                        {room.id_hotel}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-center font-medium text-gray-900">
-                        {habitacion.tipo_hab}
+                        {room.name}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-center text-gray-900">
-                        {habitacion.tamano}
+                        {room.size}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-center">
                       <span className="px-3 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                        {habitacion.num_camas}
+                        {room.num_bed}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-500">
-                      {habitacion.limite_personas}
+                      {room.limit}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-500">
-                      {habitacion.cant_hab}
+                      {room.quantity}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <a
-                        href="#"
-                        className="text-indigo-600 hover:text-indigo-900"
-                      >
-                        Edit
-                      </a>
+                      <Link href={`/room/${room.id}`}>
+                        <a className="text-indigo-600 hover:text-indigo-900 cursor-pointer">
+                          Editar
+                        </a>
+                      </Link>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                      <a href="#" className="text-red-600 hover:text-red-900">
-                        Delete
+                      <a
+                        onClick={() => handleDelete(room.id)}
+                        className="text-red-600 hover:text-red-900 cursor-pointer"
+                      >
+                        Eliminar
                       </a>
                     </td>
                   </tr>

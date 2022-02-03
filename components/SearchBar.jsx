@@ -1,6 +1,6 @@
 import { Search } from '@mui/icons-material';
 
-export default function RoomTable() {
+export default function SearchBar() {
   return (
     <span className="w-screen md:w-1/3 h-10 flex">
       <input

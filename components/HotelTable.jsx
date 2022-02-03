@@ -8,7 +8,7 @@ export default function HotelTable() {
 
   async function getHotels() {
     try {
-      const response = await api.get('/hotel/allHotels', data);
+      const response = await api.get('/hotel/allHotels');
       setHotels(response.data.data);
     } catch (error) {
       console.error(error);
