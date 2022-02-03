@@ -62,6 +62,9 @@ export default function HotelEditForm() {
   };
   return (
     <div className="flex items-center flex-col">
+      <p className="px-6 py-8 text-center text-lg font-medium text-gray-500 uppercase tracking-wider">
+        Edite una habitación
+      </p>
       <div className="px-4 sm:px-0">
         <h3 className="py-8 text-lg font-medium text-center leading-6 text-gray-900">
           Por favor, rellene los siguientes datos:
@@ -85,6 +88,7 @@ export default function HotelEditForm() {
                     }
                     id="nameRoom"
                     name="nameRoom"
+                    required
                     onChange={(e) => {
                       e.preventDefault();
                       setNameRoom(e.target.value);
@@ -104,9 +108,11 @@ export default function HotelEditForm() {
                     defaultValue={
                       attributes.length == 0 ? '' : attributes[0].size
                     }
-                    type="text"
+                    type="number"
                     name="tamano"
                     id="tamano"
+                    min="1"
+                    required
                     onChange={(e) => {
                       e.preventDefault();
                       setSize(e.target.value);
@@ -125,9 +131,11 @@ export default function HotelEditForm() {
                     defaultValue={
                       attributes.length == 0 ? '' : attributes[0].num_bed
                     }
-                    type="text"
+                    type="number"
                     name="num_camas"
                     id="num_camas"
+                    min="1"
+                    required
                     onChange={(e) => {
                       e.preventDefault();
                       setBedNumber(e.target.value);
@@ -147,9 +155,11 @@ export default function HotelEditForm() {
                     defaultValue={
                       attributes.length == 0 ? '' : attributes[0].limit
                     }
-                    type="text"
+                    type="number"
                     name="limite_personas"
                     id="limite_personas"
+                    required
+                    min="1"
                     onChange={(e) => {
                       e.preventDefault();
                       setLimitPersons(e.target.value);
@@ -169,9 +179,11 @@ export default function HotelEditForm() {
                     defaultValue={
                       attributes.length == 0 ? '' : attributes[0].quantity
                     }
-                    type="text"
+                    type="number"
                     name="cant_hab"
                     id="cant_hab"
+                    required
+                    min="1"
                     onChange={(e) => {
                       e.preventDefault();
                       setRoomsNumber(e.target.value);

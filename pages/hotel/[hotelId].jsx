@@ -85,6 +85,7 @@ export default function HotelEditForm() {
                       type="text"
                       name="name_hotel"
                       id="name_hotel"
+                      required
                       onChange={(e) => {
                         e.preventDefault();
                         setNameHotel(e.target.value);
@@ -108,6 +109,7 @@ export default function HotelEditForm() {
                       type="text"
                       name="manager"
                       id="manager"
+                      required
                       onChange={(e) => {
                         e.preventDefault();
                         setManager(e.target.value);
@@ -130,6 +132,7 @@ export default function HotelEditForm() {
                       type="text"
                       name="address"
                       id="address"
+                      required
                       onChange={(e) => {
                         e.preventDefault();
                         setAddress(e.target.value);
@@ -152,6 +155,9 @@ export default function HotelEditForm() {
                       type="number"
                       name="rating"
                       id="rating"
+                      required
+                      min="0"
+                      max="5"
                       onChange={(e) => {
                         e.preventDefault();
                         setRating(e.target.value);
