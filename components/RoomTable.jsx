@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 export default function RoomTable() {
   const [rooms, setRooms] = useState([]);
+  const [hotels, setHotels] = useState([]);
 
   async function getRooms() {
     try {
@@ -15,6 +16,24 @@ export default function RoomTable() {
     }
   }
 
+  async function getHotels() {
+    try {
+      const response = await api.get('/hotel/allHotels');
+      setHotels(response.data.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const matchIdHotel = (id) => {
+    for (let i = 0; i < hotels.length; i++) {
+      const hotelId = hotels[i].id;
+      if (id == hotelId) {
+        return hotels[i].name_hotel;
+      }
+    }
+  };
+
   const handleDelete = async (id) => {
     if (window.confirm('¿Estás seguro de que deseas eliminar la habitacion?')) {
       deleteLogicallyRoom(id);
@@ -23,6 +42,7 @@ export default function RoomTable() {
   };
 
   useEffect(() => {
+    getHotels();
     getRooms();
   }, [rooms]);
   return (
@@ -82,7 +102,7 @@ export default function RoomTable() {
                   <tr key={room.id}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-center font-medium text-gray-900">
-                        {room.id_hotel}
+                        {matchIdHotel(room.id_hotel)}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
