@@ -19,9 +19,10 @@ export default function HotelForm() {
       };
       const request = await createHotel(data);
       if (request) {
-        console.log('Se creo el hotel');
+        console.log('Se creó el hotel');
+        window.alert('El hotel fue añadido con éxito');
       } else {
-        return console.log('No se creo');
+        return console.log('No se creó');
       }
     } catch (error) {
       console.error(error);
@@ -56,6 +57,7 @@ export default function HotelForm() {
                       e.preventDefault();
                       setNameHotel(e.target.value);
                     }}
+                    required
                     autocomplete="nombre-hotel"
                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-10"
                   />
@@ -112,6 +114,9 @@ export default function HotelForm() {
                     type="number"
                     name="rating"
                     id="rating"
+                    required
+                    min="0"
+                    max="5"
                     onChange={(e) => {
                       e.preventDefault();
                       setRating(e.target.value);
